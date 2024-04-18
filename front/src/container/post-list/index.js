@@ -1,5 +1,5 @@
 import {
-  useState,
+  // useState,
   Fragment,
   useEffect,
   useReducer,
@@ -14,7 +14,7 @@ import Box from "../../component/box";
 
 import PostCreate from "../post-create";
 
-import { Alert, Skeleton } from "../../component/load";
+import { Alert, Skeleton, LOAD_STATUS } from "../../component/load";
 
 import { getDate } from "../../util/getDate";
 
@@ -34,7 +34,7 @@ export default function Container() {
   const [state, dispatch] = useReducer(requestReducer, requestInitialState);
 
   const getData = useCallback(async () => {
-    dispatch({ type: REQUEST_ACTION_TYPE.PROGRESS });
+    dispatch({ type: LOAD_STATUS.PROGRESS });
     try {
       const res = await fetch("http://localhost:4000/post-list");
 
@@ -87,7 +87,7 @@ export default function Container() {
         </Grid>
       </Box>
 
-      {state.status === REQUEST_ACTION_TYPE.PROGRESS && (
+      {state.status === LOAD_STATUS.PROGRESS && (
         <Fragment>
           <Box>
             <Skeleton />
@@ -98,11 +98,11 @@ export default function Container() {
         </Fragment>
       )}
 
-      {state.status === REQUEST_ACTION_TYPE.ERROR && (
+      {state.status === LOAD_STATUS.ERROR && (
         <Alert status={state.status} message={state.message} />
       )}
 
-      {state.status === REQUEST_ACTION_TYPE.SUCCESS && (
+      {state.status === LOAD_STATUS.SUCCESS && (
         <Fragment>
           {state.data.isEmpty ? (
             <Alert message="Список постів пустий" />

@@ -5,7 +5,7 @@ import Box from "../../component/box";
 
 import PostCreate from "../post-create";
 
-import { Alert, Skeleton, LOAD_STATUS } from "../../component/load";
+import { Alert, Loader, Skeleton, LOAD_STATUS } from "../../component/load";
 
 import { getDate } from "../../util/getDate";
 
@@ -109,7 +109,6 @@ export default function Container({ id, username, text, date }) {
                 onCreate={getData}
               />
             </Box>
-
             {state.status === LOAD_STATUS.PROGRESS && (
               <Fragment>
                 <Box>
@@ -124,7 +123,6 @@ export default function Container({ id, username, text, date }) {
             {state.status === LOAD_STATUS.ERROR && (
               <Alert status={state.status} message={state.message} />
             )}
-
             {state.status === LOAD_STATUS.SUCCESS &&
               state.data.isEmpty === false &&
               state.data.reply.map((item) => (
