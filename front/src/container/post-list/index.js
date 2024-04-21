@@ -30,7 +30,7 @@ import {
 
 const PostItem = lazy(() => import("../post-item"));
 
-export default function Container() {
+export default function Container({ theme }) {
   const [state, dispatch] = useReducer(requestReducer, requestInitialState);
 
   const getData = useCallback(async () => {

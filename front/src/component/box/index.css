@@ -3,3 +3,7 @@
   border: 1px solid #e6e6e6;
   padding: 20px;
 }
+
+.box--dark {
+  background-color: rgb(51, 3, 3);
+}
